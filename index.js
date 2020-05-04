@@ -1,29 +1,31 @@
 import rp from 'request-promise';
 import cheerio from 'cheerio'; // Basically jQuery for node.js
-import Table from 'cli-table';
 
-var table = new Table({
-  head: ['Title', 'Link'],
-  colWidths: [40, 150]
-})
+function getAnime(page) {
+  return new Promise((resolve, reject) => {
 
-const options = {
-  url: 'https://www.superanimes.org/ultimos-adicionados?valor=video-lancamento',
-  json: true
+    const options = {
+      url: `https://www.superanimes.org/ultimos-adicionados?valor=video-lancamento&pagina=${page}`,
+      json: true
+    }
+
+    rp(options)
+      .then(body => {
+        let $ = cheerio.load(body);
+        let rows = [];
+        $('article').each(function () {
+          let row = {
+            title: $(this).find('div.grid_box[title]').attr('title'),
+            link: $(this).find('div div a').attr('href')
+          };
+          rows.push(row);
+        });
+        resolve(rows);
+      })
+      .catch(err => reject(err));
+
+  })
 }
 
-
-rp(options)
-  .then(body => {
-    let $ = cheerio.load(body);
-    
-    $('article').each(function() {
-      let row = [];
-      row.push($(this).find('div.grid_box[title]').attr('title').toString());
-      row.push($(this).find('div div a').attr('href').toString());
-      table.push(row);
-    });
-
-    console.log(table.toString());
-  })
-  .catch(err => console.log(err));
+const arr = Promise.all([getAnime(1), getAnime(2), getAnime(3)])
+  .then(arr => arr[0].concat(arr[1], arr[2]));
