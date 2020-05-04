@@ -1,10 +1,10 @@
-const rp = require('request-promise');
-const cheerio = require('cheerio'); // Basically jQuery for node.js
-const Table = require('cli-table');
+import rp from 'request-promise';
+import cheerio from 'cheerio'; // Basically jQuery for node.js
+import Table from 'cli-table';
 
 var table = new Table({
   head: ['Title', 'Link'],
-  colWidths: [30, 150]
+  colWidths: [40, 150]
 })
 
 const options = {
@@ -16,15 +16,14 @@ const options = {
 rp(options)
   .then(body => {
     let $ = cheerio.load(body);
-    $('article div.grid_box[title]').each(() => {
-      console.log($(this).attr('title'));
+    
+    $('article').each(function() {
+      let row = [];
+      row.push($(this).find('div.grid_box[title]').attr('title').toString());
+      row.push($(this).find('div div a').attr('href').toString());
+      table.push(row);
     });
 
-    $('article div div a').each(() => {
-      console.log($(this).attr('href'));
-    });
-
+    console.log(table.toString());
   })
   .catch(err => console.log(err));
-
-console.log(table.toString());

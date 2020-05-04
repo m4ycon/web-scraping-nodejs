@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Web Scraping with nodejs",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
