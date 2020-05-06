@@ -1,7 +1,7 @@
 import rp from 'request-promise';
-import cheerio from 'cheerio'; // Basically jQuery for node.js
+import cheerio from 'cheerio';
 
-function getAnime(page) {
+function getList(page) {
   return new Promise((resolve, reject) => {
 
     const options = {
@@ -21,11 +21,17 @@ function getAnime(page) {
           rows.push(row);
         });
         resolve(rows);
-      })
-      .catch(err => reject(err));
-
+      }).catch(err => reject(err));
   })
 }
 
-const arr = Promise.all([getAnime(1), getAnime(2), getAnime(3)])
-  .then(arr => arr[0].concat(arr[1], arr[2]));
+export default async function getAnime() {
+  try {
+    const arr = await Promise.all([getList(1), getList(2), getList(3)]);
+    let result = arr.reduce((acc, curr) => acc.concat(curr), []);
+    return result;
+  }
+  catch (err) {
+    return console.log(err);
+  }
+}
