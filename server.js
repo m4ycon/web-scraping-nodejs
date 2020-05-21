@@ -1,26 +1,14 @@
 import express from 'express';
-import getAnime from './getAnime.js';
-import getFilm from './getFilm.js';
+import getController from './src/js/getController.js';
 
 const app = express();
 
 const specials = ['flash', 'black clover', 'sheldon', 'westworld',
   'shokugeki no souma', 'one punch man', 'walking dead', 'rick and morty'];
 
-// if (specials.some(title => /title/gi.test(anime.title))) {
-//   return `<a target="_blank" href="${anime.link}"><font color=black>${anime.title}</font></a>`
-// } else {}
-
-// if (specials.some(title => `/${title}/gi`.test(anime.title))) { 
-//   return `
-//   <tr><td style="color: #333;">
-//     <a target="_blank" href="${anime.link}"><font color=black>${anime.title}</font></a>
-//   </td></tr>`
-// } 
-// return 
-
 app.get('/', function (req, res) {
-  Promise.all([getAnime(), getFilm()])
+  Promise.all([getController()])
+    .then(arrs => arrs[0])
     .then(arrs =>
       res.send(
         `<html lang="pt-br">
@@ -45,14 +33,14 @@ app.get('/', function (req, res) {
                   return regex.test(anime.title);
                 })) {
                   return `
-                        <tr><td>
-                          <a target="_blank" href="${anime.link}"><font color=red>${anime.title}</font></a>
-                        </td></tr>`
+                              <tr><td>
+                                <a target="_blank" href="${anime.link}"><font color=red>${anime.title}</font></a>
+                              </td></tr>`
                 }
                 return `
-                      <tr><td style="color: #000;">
-                        <a target="_blank" href="${anime.link}"><font color=black>${anime.title}</font></a>
-                      </td></tr>`
+                            <tr><td style="color: #000;">
+                              <a target="_blank" href="${anime.link}"><font color=black>${anime.title}</font></a>
+                            </td></tr>`
               }).join('')}
             </tbody>
           </table>
@@ -70,14 +58,14 @@ app.get('/', function (req, res) {
                 return regex.test(film.title);
               })) {
                 return `
-                          <tr><td>
-                            <a target="_blank" href="${film.link}"><font color=red>${film.title}</font></a>
-                          </td></tr>`
+                              <tr><td>
+                                <a target="_blank" href="${film.link}"><font color=red>${film.title}</font></a>
+                              </td></tr>`
               } else {
                 return `
-                        <tr><td style="color: #000;">
-                          <a target="_blank" href="${film.link}"><font color=black>${film.title}</font></a>
-                        </td></tr>`}
+                            <tr><td style="color: #000;">
+                              <a target="_blank" href="${film.link}"><font color=black>${film.title}</font></a>
+                            </td></tr>`}
             }).join('')}
             </tbody>
           </table>
@@ -87,6 +75,6 @@ app.get('/', function (req, res) {
     )
 });
 
-app.listen(3000, function () {
-  console.log(`Servidor rodando na porta 3000`);
+app.listen(2020, function () {
+  console.log(`Servidor rodando na porta 2020`);
 });

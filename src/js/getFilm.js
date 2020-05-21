@@ -1,7 +1,7 @@
 import rp from 'request-promise';
 import cheerio from 'cheerio';
 
-function getList(page) {
+export default function getList(page) {
   return new Promise((resolve, reject) => {
 
     const options = {
@@ -25,13 +25,4 @@ function getList(page) {
   })
 }
 
-export default async function getFilm() {
-  try {
-    const arr = await Promise.all([getList(1), getList(2), getList(3), getList(4), getList(5)]);
-    let result = arr.reduce((acc, curr) => acc.concat(curr), []);
-    return result;
-  }
-  catch (err) {
-    return console.log(err);
-  }
-}
+
