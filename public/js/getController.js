@@ -17,10 +17,10 @@ export default async function joinArrs() {
       getArrsFilm(5)
     ]);
 
-    let result = [
-      animes.reduce((acc, curr) => acc.concat(curr), []),
-      films.reduce((acc, curr) => acc.concat(curr), [])
-    ];
+    let result ={
+      animes: animes.reduce((acc, curr) => acc.concat(curr), []),
+      films: films.reduce((acc, curr) => acc.concat(curr), [])
+    };
 
     return result;
 
