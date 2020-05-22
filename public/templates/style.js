@@ -1,4 +1,7 @@
 export default `
+body {
+  background-color: rgba(0,0,0,.8);
+}
 section {
   display: flex;
   justify-content: center;
@@ -8,7 +11,11 @@ section {
 div {
   width: 400px;
   height: 95vh;
+  box-shadow: 0 0 10px dimgrey;
   overflow: auto;
+}
+div:not(:last-of-type) {
+  margin-right: 20px;
 }
 div, table {
   border-top-left-radius: 10px;

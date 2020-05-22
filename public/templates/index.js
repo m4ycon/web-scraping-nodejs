@@ -15,10 +15,22 @@ export const table = (title, content) => `
     </tbody>
   </table>`;
 
-export const trLink = (title, link) => 
-  `<tr><td>
+export const trLink = (title, link) => {
+  if (specials.some(elem => {
+    let regex = new RegExp(`${elem}`, 'gi');
+    return regex.test(title);
+  })) {
+    return `<tr><td>
+      <a href=${link} target="_blank" style="color: lawngreen;">${title}</a>
+    </td></tr>`;
+  }
+  
+  return `<tr><td>
     <a href=${link} target="_blank">${title}</a>
   </td></tr>`;
+
+}
+;
 
 export const template = tables => `<!doctype html>
   <html lang="pt-br">
