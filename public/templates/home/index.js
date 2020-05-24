@@ -29,8 +29,7 @@ export const trLink = (title, link) => {
     <a href=${link} target="_blank">${title}</a>
   </td></tr>`;
 
-}
-;
+};
 
 export const template = tables => `<!doctype html>
   <html lang="pt-br">
@@ -44,10 +43,27 @@ export const template = tables => `<!doctype html>
   </head>
   <body>
 
-    <section> ${tables} </section>
+    <section>
+      ${tables}
 
+      <div>
+        <form class="form-inline" onsubmit="searchfilm(event)">
+          <input id="searchFilm" class="form-control mr-sm-2" type="search" placeholder="Search Film" aria-label="Search">
+          <button type="submit" class="btn btn-primary">Go there</button>
+        </form>
+
+        <form class="form-inline" onsubmit="searchanime(event)">
+          <input id="searchAnime" class="form-control mr-sm-2" type="search" placeholder="Search Anime" aria-label="Search">
+          <button type="submit" class="btn btn-primary">Go there</button>
+        </form>
+      </div>
+      
+    </section>
+
+    <script src="/static/templates/home/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </body>
   </html>`;
+

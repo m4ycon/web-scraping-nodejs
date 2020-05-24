@@ -8,14 +8,17 @@ section {
   align-items: center;
   height: 100vh;
 }
-div {
+div:not(:last-child) {
   width: 400px;
   height: 95vh;
   box-shadow: 0 0 10px dimgrey;
   overflow: auto;
 }
-div:not(:last-of-type) {
-  margin-right: 20px;
+section div:not(:first-child) {
+  margin-left: 20px;
+}
+section div:last-child form:not(last-child) {
+  margin-bottom: 20px;
 }
 div, table {
   border-top-left-radius: 10px;
