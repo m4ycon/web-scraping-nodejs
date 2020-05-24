@@ -56,6 +56,11 @@ export const template = tables => `<!doctype html>
           <input id="searchAnime" class="form-control mr-sm-2" type="search" placeholder="Search Anime" aria-label="Search">
           <button type="submit" class="btn btn-primary">Go there</button>
         </form>
+
+        <form class="form-inline" onsubmit="searchsubt(event)">
+          <input id="searchSubt" class="form-control mr-sm-2" type="search" placeholder="Search Subtitles" aria-label="Search">
+          <button type="submit" class="btn btn-primary">Go there</button>
+        </form>
       </div>
       
     </section>

@@ -15,3 +15,11 @@ function searchanime(e) {
     `https://www.superanimes.org/busca?parametro=${formatSearch(searchInput)}`,
     '_blank');
 }
+
+function searchsubt(e) {
+  e.preventDefault();
+  let searchInput = document.querySelector('#searchSubt').value;
+  window.open(
+    `https://legendei.to/?s=${formatSearch(searchInput)}`,
+    '_blank');
+}
