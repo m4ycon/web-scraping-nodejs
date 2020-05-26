@@ -47,17 +47,17 @@ export const template = tables => `<!doctype html>
       ${tables}
 
       <div>
-        <form class="form-inline" onsubmit="searchfilm(event)">
+        <form class="form-inline" onsubmit="search(event, '#searchFilm', 'https://comandotorrents.org/?s=')">
           <input id="searchFilm" class="form-control mr-sm-2" type="search" placeholder="Search Film" aria-label="Search">
           <button type="submit" class="btn btn-primary">Go there</button>
         </form>
 
-        <form class="form-inline" onsubmit="searchanime(event)">
+        <form class="form-inline" onsubmit="search(event, '#searchAnime', 'https://www.superanimes.org/busca?parametro=')">
           <input id="searchAnime" class="form-control mr-sm-2" type="search" placeholder="Search Anime" aria-label="Search">
           <button type="submit" class="btn btn-primary">Go there</button>
         </form>
 
-        <form class="form-inline" onsubmit="searchsubt(event)">
+        <form class="form-inline" onsubmit="search(event, '#searchSubt', 'https://legendei.to/?s=')">
           <input id="searchSubt" class="form-control mr-sm-2" type="search" placeholder="Search Subtitles" aria-label="Search">
           <button type="submit" class="btn btn-primary">Go there</button>
         </form>
