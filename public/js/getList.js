@@ -1,11 +1,11 @@
 import rp from 'request-promise';
 import cheerio from 'cheerio';
 
-export default function getList(page) {
-  return new Promise((resolve, reject) => {
+export default async function getList(url, page, rules) {
+  return await new Promise((resolve, reject) => {
 
     const options = {
-      url: `https://comandotorrents.org/page/${page}/`,
+      url: url + page,
       json: true
     }
 
@@ -14,15 +14,10 @@ export default function getList(page) {
         let $ = cheerio.load(body);
         let rows = [];
         $('article').each(function () {
-          let row = {
-            title: $(this).find('h2.entry-title a').text(),
-            link: $(this).find('h2.entry-title a').attr('href')
-          };
+          let row = rules($(this));
           rows.push(row);
         });
         resolve(rows);
       }).catch(err => reject(err));
   })
 }
-
-
