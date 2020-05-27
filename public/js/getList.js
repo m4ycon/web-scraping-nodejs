@@ -15,7 +15,9 @@ export default async function getList(url, page, rules) {
         let rows = [];
         $('article').each(function () {
           let row = rules($(this));
-          rows.push(row);
+          if (row.title != undefined && row.link != undefined) {
+            rows.push(row);
+          }
         });
         resolve(rows);
       }).catch(err => reject(err));
